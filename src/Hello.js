@@ -1,8 +1,16 @@
 import React from 'react';
+import Card from './components/UI/Card';
 
-const Hello = () => {
+const Hello = (props) => {
+    console.log('Hello Component!');
+    console.log(props);
     return (
-        <div>Hello</div>
+        <Card>
+            <div>
+                Hello React
+                {props.children}
+            </div>
+        </Card>
     );
 };
 
