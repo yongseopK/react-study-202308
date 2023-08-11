@@ -8,17 +8,17 @@ const App = () => {
     {
       title: '바나나',
       price: 2000,
-      date: new Date(2023, 3, 23)
+      date: new Date(2023, 3 - 1, 23)
     },
     {
       title: 'BBQ치킨',
       price: 20200,
-      date: new Date(2022, 5, 21)
+      date: new Date(2022, 5 - 1, 21)
     },
     {
       title: '도미노피자',
       price: 35000,
-      date: new Date(2023, 7, 14)
+      date: new Date(2023, 7 - 1, 14)
     },
   ];
 
