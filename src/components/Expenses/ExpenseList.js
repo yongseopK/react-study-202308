@@ -5,12 +5,14 @@ import Card from '../UI/Card';
 import ExpenseFilter from './ExpenseFilter';
 
 const ExpenseList = ({ items }) => {
-  // 선택된 연도 상태값 관리
-  const [filteredYear, setFilterYear] = useState(new Date().getFullYear().toString());
 
+  // 선택된 연도 상태값 관리
+  const [filteredYear, setFilteredYear] = useState(new Date().getFullYear().toString());
+
+  // 자식 컴포넌트 ExpenseFilter에 있는 선택연도를 끌어올리는 콜백함수
   const filterChangeHandler = (selectedYear) => {
     // console.log('ExpenseList: ' + selectedYear);
-    setFilterYear(selectedYear);
+    setFilteredYear(selectedYear);
   };
 
   // ExpenseItem을 동적 렌더링하기
