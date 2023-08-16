@@ -1,33 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ExpenseItem from './ExpenseItem';
 import './ExpenseList.css';
 import Card from '../UI/Card';
 import ExpenseFilter from './ExpenseFilter';
 
 const ExpenseList = ({ items }) => {
+  // 선택된 연도 상태값 관리
+  const [filteredYear, setFilterYear] = useState(new Date().getFullYear().toString());
 
   const filterChangeHandler = (selectedYear) => {
-    console.log(`리스트에서 출력하는 것 :${selectedYear}`);
+    // console.log('ExpenseList: ' + selectedYear);
+    setFilterYear(selectedYear);
   };
 
+  // ExpenseItem을 동적 렌더링하기
+  // const iterateExpenseItem = () => {
+  //   return items.map((item) => (
+  //     <ExpenseItem
+  //       title={item.title}
+  //       price={item.price}
+  //       date={item.date}
+  //     />
+  //   ));
+  // };
+
   return (
-    <Card className='expenses'>
-      <ExpenseFilter onFilterByYear={filterChangeHandler} />
-      <ExpenseItem
-        title={items[0].title}
-        price={items[0].price}
-        date={items[0].date}
-      />
-      <ExpenseItem
-        title={items[1].title}
-        price={items[1].price}
-        date={items[1].date}
-      />
-      <ExpenseItem
-        title={items[2].title}
-        price={items[2].price}
-        date={items[2].date}
-      />
+    <Card className="expenses">
+      <ExpenseFilter onChangeFilter={filterChangeHandler} />
+
+      {items
+        .filter(item => item.date.getFullYear().toString() === filteredYear)
+        .map(({ id, title, price, date }) => (
+          <ExpenseItem
+            key={id}
+            title={title}
+            price={price}
+            date={date}
+          />
+        ))}
     </Card>
   );
 };
