@@ -10,9 +10,6 @@ const ExpenseForm = ({ onSaveExpense, onToggle }) => {
 
   const titleChangeHandler = (e) => {
 
-    const foo = () => ({});
-
-
     setUserInput((prevUserInput) =>
     ({
       ...prevUserInput,

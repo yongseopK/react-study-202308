@@ -18,18 +18,18 @@ const ExpenseItem = ({ title, price: propsPrice, date }) => {
   console.log(itemTitle);
 
   // 한자리 숫자를 두자리 숫자로 변환하는 함수
-  const make2digit = (text) => {
-    return text.toString().padStart(2, '0');
-  };
+  // const make2digit = (text) => {
+  //   return text.toString().padStart(2, '0');
+  // };
 
   // 날짜 포맷팅 변환 함수 정의
-  const makeFormattedDate = () => {
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const day = date.getDate();
+  // const makeFormattedDate = () => {
+  //   const year = date.getFullYear();
+  //   const month = date.getMonth();
+  //   const day = date.getDate();
 
-    return `${year}년 ${make2digit(month)}월 ${make2digit(day)}일`;
-  };
+  //   return `${year}년 ${make2digit(month)}월 ${make2digit(day)}일`;
+  // };
 
   // 숫자를 원화표기법으로 바꾸기
   const formattedPrice = new Intl.NumberFormat('ko-KR').format(propsPrice);
