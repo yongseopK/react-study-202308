@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
-import AddUsers from './components/Users/AddUsers';
-import UserList from './components/Users/UserList';
+import MainHeader from './components/SideEffect/MainHeader/MainHeader';
+import Home from './components/SideEffect/Home/Home';
+import Login from './components/SideEffect/Login/Login';
 
 const App = () => {
 
-  const [userList, setUserList] = useState([]);
-
-  const addUserHandler = user => {
-    console.log(user);
-    setUserList(prev => [...prev, { ...user, id: Math.random().toString() }]);
-  };
-
   return (
-    <div>
-      <AddUsers onAddUser={addUserHandler} />
-      <UserList users={userList} />
-    </div>
+    <>
+      <MainHeader />
+      <main>
+        {/* <Home /> */}
+        <Login />
+      </main>
+    </>
   );
 };
 
