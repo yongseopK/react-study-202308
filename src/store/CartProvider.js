@@ -40,10 +40,34 @@ const cartReducer = (state, action) => {
     };  // 이 액션에 대한 업데이트된 새로운 상태 반환
   } else if (action.type === 'REMOVE') {
 
-    const removedItems = state.items.filter(item => item.id !== action.id);
+    // 기존 배열 복사
+    const existingItems = [...state.items];
+
+    // 제거 대상의 인덱스 찾기
+    const index = existingItems.findIndex(item => item.id === action.id);
+
+    // 제거 대상 아이템 가져오기
+    const delTargetItem = existingItems[index];
+
+    // 총액 계산
+    const updatedPrice = state.totalPrice - delTargetItem.price;
+
+    // 업데이트 전의 수량이 1이면 filter로 제거하는게 맞음
+    // 그런데 1보다 크다면 filter로 제거하면 안되고 기존배열에서
+    // 수량을 1 내린채로 업데이트 해야함
+
+    let removedItems;
+
+    if (delTargetItem.amount === 1) {
+      removedItems = existingItems.filter(item => item.id !== action.id);
+    } else {
+      delTargetItem.amount--;
+      removedItems = [...existingItems];
+    }
 
     return {
-      items: removedItems
+      items: removedItems,
+      totalPrice: updatedPrice,
     };
   }
 
