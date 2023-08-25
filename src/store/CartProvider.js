@@ -14,9 +14,25 @@ const cartReducer = (state, action) => {
 
   if (action.type === 'ADD') {
 
-    const updatedItems = [...state.items, action.item];
+    // 신규 아이템
+    const newCartItem = action.item;
 
-    const updatedPrice = state.totalPrice + (action.item.price * action.item.amount);
+    // 기존 장바구니에 등록된 메뉴인지 아닌지에 따라 다른 처리 해야함
+    // 기존 아이템과 새로 추가되는 아이템이 id가 같은게 있는지 찾는 코드 (없으면 -1 반환)
+    const index = state.items.findIndex(item => item.id === newCartItem.id);
+    // 기존 아이템
+    const existingItems = [...state.items]; // 기존 배열을 복사
+    const prevCartItem = existingItems[index];  // 기존 배열에서 탐색된 장비구니 아이템을 가져옴
+    const updatedPrice = state.totalPrice + (newCartItem.price * newCartItem.amount);
+
+    let updatedItems;
+
+    if (index === -1) { // 신규 아이템
+      updatedItems = [...state.items, action.item];
+    } else {
+      prevCartItem.amount += newCartItem.amount;  // 복사된 아이템의 수량을 늘림
+      updatedItems = [...existingItems];  // 새롭게 복사배열을 갱신
+    }
 
     return {
       items: updatedItems,
