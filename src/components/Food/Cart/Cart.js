@@ -4,21 +4,6 @@ import styles from './Cart.module.scss';
 import CartContext from '../../../store/cart-context';
 import CartItem from './CartItem';
 
-const DUMMY_CART = [
-  {
-    id: 'c1',
-    name: '스시',
-    amount: 2,
-    price: 46000
-  },
-  {
-    id: 'c2',
-    name: '띠드버거',
-    amount: 1,
-    price: 12000
-  },
-];
-
 const Cart = ({ onClose }) => {
 
   const {
@@ -48,7 +33,7 @@ const Cart = ({ onClose }) => {
       </div>
       <div className={actions}>
         <button className={btnAlt} onClick={onClose}>닫기</button>
-        <button className={button}>주문</button>
+        {items.length > 0 && <button className={button}>주문</button>}
       </div>
     </CartModal>
   );

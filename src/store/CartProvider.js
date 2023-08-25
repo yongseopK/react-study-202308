@@ -6,6 +6,8 @@ const defaultState = {
   totalPrice: 0,
 };
 
+
+
 // 리듀서 함수 정의 : 여러가지 복잡한 상태관리를 중앙집중화
 // state : 업데이트 이전상태
 // action : 어떤 업데이트를 하는지에 대한 정보와 필요값들이 들어있음
